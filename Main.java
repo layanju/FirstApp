@@ -31,7 +31,7 @@ public class Main extends Application {
     public static void startWebServer() {
         int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
         port(port);
-        
+
         get("/", (req, res) -> {
             res.type("text/html");
             return "<h1>🚀 Application is running on Railway!</h1>";
@@ -39,6 +39,15 @@ public class Main extends Application {
 
         // إبقاء السيرفر نشطًا
         awaitInitialization();
+
+        // حل المشكلة: إبقاء التطبيق يعمل إلى أجل غير مسمى
+        while (true) {
+            try {
+                Thread.sleep(100000);
+            } catch (InterruptedException e) {
+                break;
+            }
+        }
     }
 
     @Override
