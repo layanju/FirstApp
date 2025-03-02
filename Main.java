@@ -23,9 +23,12 @@ public class Main extends Application {
     public static void startWebServer() {
         int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
         port(port);
+        
+get("/", (req, res) -> {
+    res.type("text/html");
+    return "<h1>🚀 Application is running on Railway!</h1>";
+});
 
-        get("/", (req, res) -> "🚀 Application is running on Railway!");
-        get("/hello", (req, res) -> "Hello from SparkJava!");
 
         // إبقاء السيرفر نشطًا
         awaitInitialization();
